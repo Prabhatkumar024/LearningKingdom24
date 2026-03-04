@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Kingdom 24</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+margin:0;
+padding:0;
+text-align:center;
+background: linear-gradient(120deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+min-height:100vh;
+}
+
+header{
+padding:30px;
+color:white;
+font-size:28px;
+font-weight:bold;
+}
+
+.welcome{
+font-size:20px;
+color:white;
+margin-bottom:20px;
+}
+
+.container{
+background:white;
+padding:25px;
+border-radius:12px;
+width:90%;
+max-width:600px;
+margin:auto;
+box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+
+textarea{
+width:90%;
+height:80px;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+button{
+padding:10px 20px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+background:#ff6a00;
+color:white;
+}
+
+button:hover{
+background:#ff4500;
+}
+
+.quote{
+margin-top:15px;
+padding:12px;
+background:#f3f3f3;
+border-radius:8px;
+}
+
+.download{
+background:#28a745;
+margin-left:5px;
+}
+
+.download:hover{
+background:#1e7e34;
+}
+
+footer{
+margin-top:40px;
+color:white;
+font-size:14px;
+padding-bottom:20px;
+}
+
+</style>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+
+<body>
+
+<header>
+Learning Kingdom 24
+</header>
+
+<div class="welcome">
+🌸 Happy Holi! Spread Colors of Positivity 🌸
+</div>
+
+<div class="container">
+
+<h3>Post Your Positive Affirmation</h3>
+
+<textarea id="quoteInput" placeholder="Write your affirmation..."></textarea>
+<br>
+
+<button onclick="postQuote()">Post Quote</button>
+
+<div id="quotes"></div>
+
+</div>
+
+<footer>
+Made with positivity ✨ | learningkingdom24.com
+</footer>
+
+<script>
+
+function postQuote(){
+
+let quoteText=document.getElementById("quoteInput").value;
+
+if(quoteText===""){
+alert("Please write an affirmation first");
+return;
+}
+
+let quoteBox=document.createElement("div");
+quoteBox.className="quote";
+
+let text=document.createElement("p");
+text.innerText=quoteText;
+
+let downloadBtn=document.createElement("button");
+downloadBtn.innerText="Download";
+downloadBtn.className="download";
+downloadBtn.onclick=function(){
+
+html2canvas(quoteBox).then(canvas => {
+
+let link=document.createElement("a");
+link.download="affirmation.png";
+link.href=canvas.toDataURL();
+
+link.click();
+
+});
+
+}
+
+quoteBox.appendChild(text);
+quoteBox.appendChild(downloadBtn);
+
+document.getElementById("quotes").appendChild(quoteBox);
+
+document.getElementById("quoteInput").value="";
+
+}
+
+</script>
+<script>
+
+function createColor(){
+
+let color=document.createElement("div");
+
+color.style.position="fixed";
+color.style.width="10px";
+color.style.height="10px";
+color.style.background=`hsl(${Math.random()*360},100%,50%)`;
+color.style.left=Math.random()*window.innerWidth+"px";
+color.style.top="-10px";
+color.style.borderRadius="50%";
+color.style.opacity="0.8";
+
+document.body.appendChild(color);
+
+let fall=setInterval(function(){
+
+color.style.top=parseInt(color.style.top)+5+"px";
+
+if(parseInt(color.style.top)>window.innerHeight){
+
+clearInterval(fall);
+color.remove();
+
+}
+
+},30);
+
+}
+
+setInterval(createColor,200);
+
+</script>
+</body>
+</html>
