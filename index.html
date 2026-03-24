@@ -5,145 +5,150 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Learning Kingdom 24</title>
 
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 <style>
 
 body{
 font-family: Arial, sans-serif;
+background:#f4f6f9;
 margin:0;
-padding:0;
 text-align:center;
-background: linear-gradient(120deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
-min-height:100vh;
 }
 
 header{
-padding:30px;
+background:#222;
 color:white;
-font-size:28px;
-font-weight:bold;
-}
-
-.welcome{
-font-size:20px;
-color:white;
-margin-bottom:20px;
+padding:15px;
+font-size:22px;
 }
 
 .container{
 background:white;
-padding:25px;
-border-radius:12px;
-width:90%;
 max-width:600px;
-margin:auto;
-box-shadow:0 0 15px rgba(0,0,0,0.2);
+margin:20px auto;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 textarea{
 width:90%;
 height:80px;
 padding:10px;
-border-radius:6px;
-border:1px solid #ccc;
-font-size:16px;
-}
-<select id="bgStyle">
-<option value="colorful">Colorful</option>
-<option value="blank">Blank</option>
-<option value="stylish">Stylish</option>
-</select>
-button{
-padding:10px 20px;
 margin-top:10px;
+}
+
+button{
+padding:10px 15px;
+margin:5px;
 border:none;
-border-radius:6px;
-font-size:16px;
-cursor:pointer;
-background:#ff6a00;
+background:#007bff;
 color:white;
+border-radius:5px;
+cursor:pointer;
 }
 
 button:hover{
-background:#ff4500;
+background:#0056b3;
 }
 
 .quote{
 margin-top:20px;
-padding:40px;
-border-radius:15px;
-font-size:24px;
+padding:30px;
+border-radius:10px;
+background:#e9ecef;
+font-size:20px;
 font-weight:bold;
-text-align:center;
-position:relative;
-}
-
-.colorful{
-background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fad0c4);
-color:#000;
-}
-
-.blank{
-background:#ffffff;
-border:2px solid #000;
-color:#000;
-}
-
-.stylish{
-background:linear-gradient(135deg,#6a11cb,#2575fc);
-color:#fff;
 }
 
 footer{
-margin-top:40px;
+margin-top:20px;
+padding:15px;
+background:#222;
 color:white;
-font-size:14px;
-padding-bottom:20px;
+}
+
+a{
+color:#ffcc00;
+text-decoration:none;
 }
 
 </style>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 </head>
 
 <body>
-
+<p style="color:gray;">Create, download and share powerful affirmations</p>
 <header>
 Learning Kingdom 24
 </header>
 
-<div class="welcome">
-🌸 Happy Holi! Spread Colors of Positivity 🌸
-</div>
-
 <div class="container">
 
-<h3>Post Your Positive Affirmation</h3>
+<h2>Post Positive Quote</h2>
 
-<textarea id="quoteInput" placeholder="Write your affirmation..."></textarea>
+<textarea id="quoteInput" placeholder="Write your positive affirmation..."></textarea>
 <br>
 
-<button onclick="postQuote()">Post Quote</button>
+<button onclick="postQuote()">Post</button>
 
 <div id="quotes"></div>
 
 </div>
 
+<div class="container">
+
+<h3>Chat With Us</h3>
+
+
+<input type="hidden" name="_captcha" value="false">
+
+<input type="hidden" name="_subject" value="New Message from Learning Kingdom 24">
+
+<form action="https://formsubmit.co/learningkingdom24@gmail.com" method="POST">
+
+<input type="text" name="name" placeholder="Your Name" required><br><br>
+
+<input type="email" name="email" placeholder="Your Email" required><br><br>
+
+<textarea name="message" placeholder="Your Message" required></textarea><br><br>
+
+<button type="submit">Send Message</button>
+
+<input type="hidden" name="_captcha" value="false">
+
+<input type="hidden" name="_subject" value="New Message from Learning Kingdom 24">
+
+</form>
+
+
+</form>
+
+</div>
+
 <footer>
-Made with positivity ✨ | learningkingdom24.com
+
+Visit our YouTube:
+<a href="https://www.youtube.com/@learningkingdom24" target="_blank">
+@learningkingdom24
+</a>
+
 </footer>
 
 <script>
+
 function postQuote(){
 
 let quoteText=document.getElementById("quoteInput").value;
-let bgStyle=document.getElementById("bgStyle").value;
 
 if(quoteText===""){
-alert("Write a quote first");
+alert("Please write a quote");
 return;
 }
 
 let quoteBox=document.createElement("div");
-quoteBox.className="quote "+bgStyle;
+quoteBox.className="quote";
 
 let text=document.createElement("p");
 text.innerText=quoteText;
@@ -151,39 +156,36 @@ text.innerText=quoteText;
 let watermark=document.createElement("div");
 watermark.innerText="learningkingdom24.com";
 watermark.style.fontSize="12px";
-watermark.style.marginTop="20px";
-watermark.style.opacity="0.7";
+watermark.style.marginTop="15px";
 
-let downloadPNG=document.createElement("button");
-downloadPNG.innerText="Download PNG";
+let btnPNG=document.createElement("button");
+btnPNG.innerText="Download PNG";
 
-let downloadJPG=document.createElement("button");
-downloadJPG.innerText="Download JPG";
+let btnJPG=document.createElement("button");
+btnJPG.innerText="Download JPG";
 
-downloadPNG.onclick=function(){
+btnPNG.onclick=function(){
 downloadImage(quoteBox,"png");
 }
 
-downloadJPG.onclick=function(){
+btnJPG.onclick=function(){
 downloadImage(quoteBox,"jpeg");
 }
 
 quoteBox.appendChild(text);
 quoteBox.appendChild(watermark);
-quoteBox.appendChild(downloadPNG);
-quoteBox.appendChild(downloadJPG);
+quoteBox.appendChild(btnPNG);
+quoteBox.appendChild(btnJPG);
 
 document.getElementById("quotes").appendChild(quoteBox);
 
 document.getElementById("quoteInput").value="";
+
 }
 
-</script>
-<script>
 function downloadImage(element,type){
 
 let buttons=element.querySelectorAll("button");
-
 buttons.forEach(btn=>btn.style.display="none");
 
 html2canvas(element).then(canvas=>{
@@ -206,39 +208,9 @@ buttons.forEach(btn=>btn.style.display="inline-block");
 
 });
 
-  }
-function createColor(){
-
-let color=document.createElement("div");
-
-color.style.position="fixed";
-color.style.width="10px";
-color.style.height="10px";
-color.style.background=`hsl(${Math.random()*360},100%,50%)`;
-color.style.left=Math.random()*window.innerWidth+"px";
-color.style.top="-10px";
-color.style.borderRadius="50%";
-color.style.opacity="0.8";
-
-document.body.appendChild(color);
-
-let fall=setInterval(function(){
-
-color.style.top=parseInt(color.style.top)+5+"px";
-
-if(parseInt(color.style.top)>window.innerHeight){
-
-clearInterval(fall);
-color.remove();
-
 }
-
-},30);
-
-}
-
-setInterval(createColor,200);
 
 </script>
+
 </body>
 </html>
